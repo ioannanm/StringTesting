@@ -15,6 +15,12 @@ public class Author {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	@Override
+	public String toString() {
+		return "Author [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth="
+				+ dateOfBirth + "]";
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -46,7 +52,7 @@ public class Author {
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	
+
 	
 	
 	

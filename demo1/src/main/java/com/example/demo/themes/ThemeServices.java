@@ -8,6 +8,14 @@ public class ThemeServices {
 	private List<Theme> themes = new ArrayList<Theme>();
 	
 
+	public List<Theme> getThemes() {
+		return themes;
+	}
+
+	public void setThemes(List<Theme> themes) {
+		this.themes = themes;
+	}
+
 	public void viewAllThemes() {
 		if (themes.isEmpty()) {
 			System.out.println("There are no themes.");
@@ -20,26 +28,33 @@ public class ThemeServices {
 	}
 	
 	public void addTheme(Theme theme) {
-		System.out.println("Adding theme : " + "'" + theme.getName() + "'");
 		themes.add(theme);
 	}
 	
-	public void deleteTheme(Theme theme) {
-		if (themes.isEmpty()) {
-			System.out.println("There are no themes to delete.");
-			} else {
-				System.out.println("Deleting theme : " + "'" + theme.getName() + "'");
-				themes.remove(theme);
-		}
+	
+	
+	public List<Theme> removeTheme(int id) {
+		themes.removeIf(theme -> theme.getId()  == id);
+		return themes;
 	}
 	
-	public void updateTheme(int id, Theme theme) {
-		for (Theme theme1 : themes) {
-			if(id == theme1.getId())
-				theme1 = theme;				
+	public List<Theme> updateTheme(int id, String newName, String newDescription) {
+		for (Theme theme : themes) {
+			if(id == theme.getId()) {
+				if(newName != null) 
+	        		theme.setName(newName);
+				if(newName != null) 
+	        		theme.setName(newName);
+			}
 		}
+		return themes;
+	}
+
+	@Override
+	public String toString() {
+		return "ThemeServices [themes=" + themes + "]";
 	}
 	
 	
-	
+
 }

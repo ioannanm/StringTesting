@@ -29,12 +29,17 @@ public class Theme {
 		this.name = name;
 	}
 
-	public String getDesscription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDesscription(String desscription) {
+	public void setDescription(String desscription) {
 		this.description = desscription;
+	}
+
+	@Override
+	public String toString() {
+		return "Theme [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 	
 	

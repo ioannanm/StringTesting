@@ -27,6 +27,12 @@ public class Book {
 		this.themes = themes;
 	}
 
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publisher=" + publisher
+				+ ", publishedYear=" + publishedYear + ", description=" + description + ", themes=" + themes + "]";
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -84,7 +90,10 @@ public class Book {
 	}
 	
 	
-	
+	public void addTheme(Theme theme) {
+		themes.add(theme);
+		
+	}
 	
 	
 	
