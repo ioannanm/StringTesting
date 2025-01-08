@@ -1,6 +1,7 @@
 package com.example.demo.authors;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.example.demo.books.Book;
@@ -35,10 +36,19 @@ public class AuthorServices {
 		}
 	}
 
-	public void updateAuthor(int id, Author author) {
-		for (Author author1 : authors) {
-			if(id == author1.getId())
-				author1 = author;				
-		}
+	public void updateAuthor(int id) {
+		/*for (Author author1 : authors) {
+			if(id == author1.getId()) {
+				author1.setFirstName(firstName);
+				author1.setLastName(lastName);
+				author1.setDateOfBirth(dateOfBirth);
+			}
+		}*/
+		
+	//	List<String> authorsS = Arrays.asList("Amanda", "Chris", "amali");
+		
+		
 	}
+	
+
 }
