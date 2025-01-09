@@ -31,8 +31,9 @@ public class ThemeServices {
 				}
 	}
 	
-	public void addTheme(Theme theme) {
+	public List<Theme> addTheme(Theme theme) {
 		themes.add(theme);
+		return themes;
 	}
 	
 	

@@ -26,9 +26,11 @@ public class AuthorServices {
 		}
 	}
 
-	public void addAuthor(Author author) {
-		System.out.println("Adding author : " + "'" + author.getFirstName() + "'" + "'" + author.getLastName() + "'");
+	public List<Author> addAuthor(Author author) {
+		//System.out.println("Adding author : " + "'" + author.getFirstName() + "'" + "'" + author.getLastName() + "'");
 		authors.add(author);
+		return authors;
+		
 	}
 	
 	
