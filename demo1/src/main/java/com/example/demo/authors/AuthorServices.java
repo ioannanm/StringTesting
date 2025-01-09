@@ -1,12 +1,16 @@
 package com.example.demo.authors;
 
+
 import java.util.ArrayList;
 //import java.util.Arrays;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
 //
 //import com.example.demo.books.Book;
 //import com.example.demo.themes.Theme;
 
+@Service
 public class AuthorServices {
 
 	private List<Author> authors = new ArrayList<Author>();
@@ -26,6 +30,12 @@ public class AuthorServices {
 		System.out.println("Adding author : " + "'" + author.getFirstName() + "'" + "'" + author.getLastName() + "'");
 		authors.add(author);
 	}
+	
+	
+	//events services -> 
+	//reservation -> make reservation (eventID ,visitorID)
+	// visitor services -> apothikeuei neous visitor, (opos book)
+	// visitor -> mono setters getters
 	
 
 	

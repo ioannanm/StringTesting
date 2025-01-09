@@ -39,7 +39,7 @@ public class Theme {
 
 	@Override
 	public String toString() {
-		return "Theme [id=" + id + ", name=" + name + ", description=" + description + "]";
+		return "Theme [id=" + id +"]";
 	}
 	
 	

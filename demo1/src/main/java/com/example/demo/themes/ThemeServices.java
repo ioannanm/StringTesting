@@ -3,6 +3,10 @@ package com.example.demo.themes;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+
+@Service
 public class ThemeServices {
 	
 	private List<Theme> themes = new ArrayList<Theme>();
@@ -22,7 +26,7 @@ public class ThemeServices {
 			} else {
 				System.out.println("Themes: ");
 				for (Theme theme : themes) {
-					System.out.println(theme);
+					System.out.println(theme.getName());
 					}
 				}
 	}
