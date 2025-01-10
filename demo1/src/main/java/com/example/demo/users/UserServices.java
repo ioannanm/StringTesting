@@ -21,9 +21,9 @@ public class UserServices {
 		}
 	}
 	
-	public void addUser(User user) {
-		System.out.println("Adding user : " + "'" + user.getFirstName() + "'" + "'" + user.getLastName() + "'");
+	public List<User> addUser(User user) {
 		users.add(user);
+		return users;
 	}
 	
 	public List<User> getAllUsers() {

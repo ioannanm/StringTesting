@@ -33,13 +33,18 @@ public class ThemeController {
 		return themeServices.addTheme(theme);
 	}
  	
+ 	@PostMapping("/addMany")
+	public List<Theme> addManyThemes(@RequestBody List<Theme> themes) {
+ 		return themeServices.AddManyThemes(themes);
+	}
+ 	
  	@DeleteMapping("/delete")
 	public List<Theme> deleteTheme(@RequestParam Integer id ) {
 		return themeServices.removeTheme(id);
 	}
  	
  	@PutMapping("/update")
-	public List<Theme> updateTheme(@RequestParam Integer id ,String newName, String newDescription ) {
+	public List<Theme> updateTheme(@RequestParam Integer id ,@RequestParam(required = false) String newName, @RequestParam(required = false) String newDescription ) {
 		return themeServices.updateTheme(id, newName, newDescription);
 	}
  	

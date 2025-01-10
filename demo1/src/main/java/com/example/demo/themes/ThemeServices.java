@@ -36,7 +36,12 @@ public class ThemeServices {
 		return themes;
 	}
 	
-	
+	public List<Theme> AddManyThemes(List<Theme> list) {
+		for(Theme theme : list){
+ 			this.addTheme(theme);
+ 		}
+		return themes;
+	}
 	
 	public List<Theme> removeTheme(int id) {
 		themes.removeIf(theme -> theme.getId()  == id);

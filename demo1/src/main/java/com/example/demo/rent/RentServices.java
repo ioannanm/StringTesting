@@ -46,8 +46,9 @@ public class RentServices {
 		return RentedBooks;
 	}
 
-	public void addRentedBook(Rent RentedBook) {
+	public List<Rent> addRentedBook(Rent RentedBook) {
 		RentedBooks.add(RentedBook);
+		return RentedBooks;
 	}
 
 	public List<Rent> removeRentedBook(int idBook) {

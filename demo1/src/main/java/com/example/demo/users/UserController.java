@@ -1,5 +1,4 @@
-package com.example.demo.rent;
-
+package com.example.demo.users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,29 +17,29 @@ import com.example.demo.authors.Author;
 import com.example.demo.themes.Theme;
 
 @RestController
-@RequestMapping("rents")
-public class RentController {
+@RequestMapping("users")
+public class UserController {
 	@Autowired
-	RentServices rentServices;
+	UserServices userServices;
 
  	@GetMapping("/hello")
 	public String hello() {
 		return "Hello! :)";
 	}
 
- 	@GetMapping("/allrents")
-	public List<Rent> getRentsAll() {
-		return rentServices.getRents();
+ 	@GetMapping("/allusers")
+	public List<User> getUsersAll() {
+		return userServices.getAllUsers();
 	}
  	
  	@PostMapping("/add")
-	public List<Rent> addRebt(@RequestBody Rent rent) {
-		return rentServices.addRentedBook(rent);
+	public List<User> addUser(@RequestBody User user) {
+		return userServices.addUser(user);
 	}
  	
  	@DeleteMapping("/delete")
-	public List<Rent> deleteRent(@RequestParam Integer id ) {
-		return rentServices.removeRentedBook(id);
+	public List<User> deleteUser(@RequestParam Integer id ) {
+		return userServices.removeUser(id);
 	}
  	
 // 	@PutMapping("/update")

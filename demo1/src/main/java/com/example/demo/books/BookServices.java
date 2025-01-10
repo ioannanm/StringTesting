@@ -20,7 +20,7 @@ public class BookServices {
 	@Autowired
 	AuthorServices AuthorServices;
 	private List<Book> books = new ArrayList<Book>();
-	private List<Book> RentedBooks = new ArrayList<Book>();
+	//private List<Book> RentedBooks = new ArrayList<Book>();
 
 	public BookServices(ThemeServices themeServices, AuthorServices authorServices) {
 		this.AuthorServices = authorServices;
@@ -43,9 +43,10 @@ public class BookServices {
 	}
 
 
-	public void addBook(Book book) {
+	public List<Book> addBook(Book book) {
 		System.out.println("Adding book : " + "'" + book.getTitle() + "'");
 		books.add(book);
+		return books;
 	}
 
 	public List<Book> removeBook(int id) {
@@ -53,18 +54,17 @@ public class BookServices {
 		return books;
 	}
 
-	public List<Book> updateBook(int id, String newTitle, Author newAuthor, String newPublisher, int newYear,
+	public List<Book> updateBook(int id, String newTitle, Author newAuthor, String newPublisher, Integer newYear,
 			String newDesc, ArrayList<Theme> newThemes) {
 		for (Book book : books) {
 			if (id == book.getId()) {
 				if (newTitle != null)
 					book.setTitle(newTitle);
-				;
 				if (newAuthor != null)
 					book.setAuthor(newAuthor);
 				if (newPublisher != null)
 					book.setPublisher(newPublisher);
-				if (newYear != 0)
+				if (newYear!= null && newYear > 0)
 					book.setPublishedYear(newYear);
 				if (newDesc != null)
 					book.setDescription(newDesc);
@@ -103,21 +103,21 @@ public class BookServices {
 		return books;
 	}
 	
-	public void rentBook(int idBook) {
-		for (Book book : RentedBooks) {
-			if (idBook == book.getId()) 
-				System.out.println("You can't rent this book, someone else has rent it! :( ");
-			else
-				RentedBooks.add(book);				
-			}
-	}
-	
-	public void returnBook(int idBook) {
-		for (Book book : RentedBooks) {
-			if (idBook == book.getId()) 
-				RentedBooks.remove(book);				
-			}
-	}
+//	public void rentBook(int idBook) {
+//		for (Book book : RentedBooks) {
+//			if (idBook == book.getId()) 
+//				System.out.println("You can't rent this book, someone else has rent it! :( ");
+//			else
+//				RentedBooks.add(book);				
+//			}
+//	}
+//	
+//	public void returnBook(int idBook) {
+//		for (Book book : RentedBooks) {
+//			if (idBook == book.getId()) 
+//				RentedBooks.remove(book);				
+//			}
+//	}
 
 
 }
