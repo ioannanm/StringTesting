@@ -50,7 +50,12 @@ public class RentServices {
 		RentedBooks.add(RentedBook);
 		return RentedBooks;
 	}
-
+	
+	public List<Rent> addRentedBook(User user, Book book) {
+		RentedBooks.add(new Rent(user, book, ""));
+		return RentedBooks;
+	}
+	
 	public List<Rent> removeRentedBook(int idBook) {
 		System.out.println("Book with id " + idBook + " is removed");
 		RentedBooks.removeIf(rentedBook -> rentedBook.getBook().getId() == idBook);
