@@ -9,17 +9,20 @@ import org.springframework.stereotype.Service;
 import com.example.demo.authors.Author;
 import com.example.demo.authors.AuthorServices;
 import com.example.demo.themes.Theme;
+import com.example.demo.themes.ThemeRepository;
 import com.example.demo.themes.ThemeServices;
 
 
 @Service
 public class BookServices {
 
+	@Autowired BookRepository repository;
+	
 	@Autowired
 	ThemeServices ThemeServices;
 	@Autowired
 	AuthorServices AuthorServices;
-	private List<Book> books = new ArrayList<Book>();
+	//private List<Book> books = new ArrayList<Book>();
 	//private List<Book> RentedBooks = new ArrayList<Book>();
 
 	public BookServices(ThemeServices themeServices, AuthorServices authorServices) {
@@ -27,36 +30,35 @@ public class BookServices {
 		this.ThemeServices = themeServices;
 	}
 
-	public void viewAllBooks() {
-		if (books.isEmpty()) {
-			System.out.println("There are no books.");
-		} else {
-			System.out.println("Books: ");
-			for (Book book : books) {
-				System.out.println(book);
-			}
-		}
-	}
+//	public void viewAllBooks() {
+//		if (books.isEmpty()) {
+//			System.out.println("There are no books.");
+//		} else {
+//			System.out.println("Books: ");
+//			for (Book book : books) {
+//				System.out.println(book);
+//			}
+//		}
+//	}
 
 	public List<Book> getBooks() {
-		return books;
+		return repository.findAll();
 	}
 
 
 	public List<Book> addBook(Book book) {
-		System.out.println("Adding book : " + "'" + book.getTitle() + "'");
-		books.add(book);
-		return books;
+		repository.save(book);
+		return this.getBooks();
 	}
 
-	public List<Book> removeBook(int id) {
-		books.removeIf(book -> book.getId() == id);
-		return books;
+	public List<Book> removeBook(Integer id) {
+		repository.deleteById(id);
+		return this.getBooks();
 	}
 
 	public List<Book> updateBook(int id, String newTitle, Author newAuthor, String newPublisher, Integer newYear,
 			String newDesc, ArrayList<Theme> newThemes) {
-		for (Book book : books) {
+		for (Book book : this.getBooks()) {
 			if (id == book.getId()) {
 				if (newTitle != null)
 					book.setTitle(newTitle);
@@ -72,11 +74,11 @@ public class BookServices {
 					book.setThemes(newThemes);
 			}
 		}
-		return books;
+		return this.getBooks();
 	}
 
 	public List<Book> updateBookAuthor(int idBook, int idAuthor) {
-		for (Book book : books) {
+		for (Book book : this.getBooks()) {
 			if (idBook == book.getId()) {
 				for (Author author : AuthorServices.getAuthors()) {
 					if (author.getId() == idAuthor) {
@@ -87,11 +89,11 @@ public class BookServices {
 				// authors.setAuthor();
 			}
 		}
-		return books;
+		return this.getBooks();
 	}
 
 	public List<Book> addBookTheme(int idBook, int idTheme) {
-		for (Book book : books) {
+		for (Book book : this.getBooks()) {
 			if (idBook == book.getId()) {
 				for (Theme theme : ThemeServices.getThemes()) {
 					if (theme.getId() == idTheme) {
@@ -100,7 +102,7 @@ public class BookServices {
 				}
 			}
 		}
-		return books;
+		return this.getBooks();
 	}
 	
 //	public void rentBook(int idBook) {

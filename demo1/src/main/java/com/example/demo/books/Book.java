@@ -5,16 +5,41 @@ import java.util.ArrayList;
 import com.example.demo.authors.Author;
 import com.example.demo.themes.Theme;
 
-public class Book {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "books")
+public class Book {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	@Column(name = "book_id", nullable = false )
 	private int id;
+	
+	@Column(name = "title", nullable = false )
 	private String title;
+	
+	@Column(name = "author", nullable = false )
 	private Author author;
+	
+	@Column(name = "publisher", nullable = false )
 	private String publisher;
+	
+	@Column(name = "publishedYear", nullable = false )
 	private int publishedYear;
+	
+	@Column(name = "description", nullable = true )
 	private String description;
+
+	@Column(name = "themes", nullable = true )
 	private ArrayList<Theme> themes = new ArrayList<>();
 	
+	public Book() {}
 	public Book(int id, String title, Author author, String publisher, int publishedYear, String description,
 			ArrayList<Theme> themes) {
 		super();

@@ -1,55 +1,43 @@
 package com.example.demo.themes;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public class ThemeServices {
 	
-	private List<Theme> themes = new ArrayList<Theme>();
 	
-
+	@Autowired ThemeRepository repository;
+	
+	
 	public List<Theme> getThemes() {
-		return themes;
+		return repository.findAll();
 	}
 
-	public void setThemes(List<Theme> themes) {
-		this.themes = themes;
-	}
-
-	public void viewAllThemes() {
-		if (themes.isEmpty()) {
-			System.out.println("There are no themes.");
-			} else {
-				System.out.println("Themes: ");
-				for (Theme theme : themes) {
-					System.out.println(theme.getName());
-					}
-				}
-	}
 	
 	public List<Theme> addTheme(Theme theme) {
-		themes.add(theme);
-		return themes;
+		repository.save(theme);
+		return this.getThemes();
 	}
 	
 	public List<Theme> AddManyThemes(List<Theme> list) {
 		for(Theme theme : list){
- 			this.addTheme(theme);
+			repository.save(theme);
  		}
-		return themes;
+		return this.getThemes();
 	}
 	
-	public List<Theme> removeTheme(int id) {
-		themes.removeIf(theme -> theme.getId()  == id);
-		return themes;
+	public List<Theme> removeTheme(Integer id) {
+		repository.deleteById(id);
+		return this.getThemes();
 	}
 	
-	public List<Theme> updateTheme(int id, String newName, String newDescription) {
-		for (Theme theme : themes) {
+	public List<Theme> updateTheme(Integer id, String newName, String newDescription) {
+		for (Theme theme : this.getThemes()) {
 			if(id == theme.getId()) {
 				if(newName != null) 
 	        		theme.setName(newName);
@@ -57,13 +45,9 @@ public class ThemeServices {
 	        		theme.setName(newName);
 			}
 		}
-		return themes;
+		return this.getThemes();
 	}
-
-	@Override
-	public String toString() {
-		return "ThemeServices [themes=" + themes + "]";
-	}
+	
 	
 	
 

@@ -1,12 +1,32 @@
 package com.example.demo.authors;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 
-public class Author {
+import jakarta.persistence.Id;
+
+@Entity
+@Table(name = "authors")
+	public class Author {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	@Column(name = "author_id", nullable = false )
 	private int id;
+	
+	@Column(name = "firstName", nullable = false )
 	private String firstName;
+	
+	@Column(name = "lastName", nullable = false )
 	private String lastName;
+	
+	@Column(name = "dateOfBirth", nullable = true )
 	private String dateOfBirth;
 	
+	public Author() {}
 	public Author(int id, String firstName, String lastName, String dateOfBirth) {
 		super();
 		this.id = id;

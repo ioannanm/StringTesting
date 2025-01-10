@@ -5,31 +5,37 @@ import java.util.ArrayList;
 //import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //
 //import com.example.demo.books.Book;
 //import com.example.demo.themes.Theme;
 
+import com.example.demo.themes.ThemeRepository;
+
 @Service
 public class AuthorServices {
 
-	private List<Author> authors = new ArrayList<Author>();
+//	private List<Author> authors = new ArrayList<Author>();
+//
+//	public void viewAllAuthors() {
+//		if (authors.isEmpty()) {
+//			System.out.println("There are no authors.");
+//		} else {
+//			System.out.println("Authors: ");
+//			for (Author author : authors) {
+//				System.out.println(author);
+//			}
+//		}
+//	}
 
-	public void viewAllAuthors() {
-		if (authors.isEmpty()) {
-			System.out.println("There are no authors.");
-		} else {
-			System.out.println("Authors: ");
-			for (Author author : authors) {
-				System.out.println(author);
-			}
-		}
-	}
-
+	@Autowired AuthorRepository repository;
+	
+	
 	public List<Author> addAuthor(Author author) {
 		//System.out.println("Adding author : " + "'" + author.getFirstName() + "'" + "'" + author.getLastName() + "'");
-		authors.add(author);
-		return authors;
+		repository.save(author);
+		return this.getAuthors();
 		
 	}
 	
@@ -43,17 +49,17 @@ public class AuthorServices {
 	
 
 	public List<Author> getAuthors() {
-		return authors;
+		return repository.findAll();
 	}
 
 
-	public List<Author> removeAuthor(int id) {
-		authors.removeIf(author -> author.getId() == id);
-		return authors;
+	public List<Author> removeAuthor(Integer id) {
+		repository.deleteById(id);
+		return this.getAuthors();
 	}
 
 	public List<Author> updateAuthor(int id, String newFirstName, String newLastName, String newDateOfBirth) {
-		for (Author author : authors) {
+		for (Author author : this.getAuthors()) {
 			if (id == author.getId()) {
 				if (newFirstName != null)
 					author.setFirstName(newFirstName);
@@ -63,7 +69,7 @@ public class AuthorServices {
 					author.setDateOfBirth(newDateOfBirth);
 			}
 		}
-		return authors;
+		return this.getAuthors();
 	}
 
 }
