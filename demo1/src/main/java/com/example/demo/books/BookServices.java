@@ -16,15 +16,14 @@ import com.example.demo.themes.ThemeServices;
 public class BookServices {
 
 	@Autowired
-	ThemeServices ThemeServices;
+	ThemeServices themeServices;
 	@Autowired
-	AuthorServices AuthorServices;
+	AuthorServices authorServices;
 	private List<Book> books = new ArrayList<Book>();
-	//private List<Book> RentedBooks = new ArrayList<Book>();
 
 	public BookServices(ThemeServices themeServices, AuthorServices authorServices) {
-		this.AuthorServices = authorServices;
-		this.ThemeServices = themeServices;
+		this.authorServices = authorServices;
+		this.themeServices = themeServices;
 	}
 
 	public void viewAllBooks() {
@@ -78,7 +77,7 @@ public class BookServices {
 	public List<Book> updateBookAuthor(int idBook, int idAuthor) {
 		for (Book book : books) {
 			if (idBook == book.getId()) {
-				for (Author author : AuthorServices.getAuthors()) {
+				for (Author author : authorServices.getAuthors()) {
 					if (author.getId() == idAuthor) {
 						book.setAuthor(author);
 						// break;
@@ -93,7 +92,7 @@ public class BookServices {
 	public List<Book> addBookTheme(int idBook, int idTheme) {
 		for (Book book : books) {
 			if (idBook == book.getId()) {
-				for (Theme theme : ThemeServices.getThemes()) {
+				for (Theme theme : themeServices.getThemes()) {
 					if (theme.getId() == idTheme) {
 						book.addTheme(theme);
 					}
